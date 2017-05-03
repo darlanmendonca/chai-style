@@ -1,6 +1,6 @@
 # chai-style
 
-chai-style provides assertions to CSS Style, and can be used like a plugin to [chai.js](http://chaijs.com/)
+CSS Style assertions for elements, using [Chai.js](http://chaijs.com/)
 
 ## Install
 
