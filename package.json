@@ -1,0 +1,23 @@
+{
+  "name": "chai-style",
+  "version": "0.0.1",
+  "description": "CSS Style assertions for elements, using Chai.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darlanmendonca/chai-style.git"
+  },
+  "keywords": [],
+  "author": "Darlan Mendonça <darlanmendonca@gmail.com> (https://darlanmendonca.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/darlanmendonca/chai-style/issues"
+  },
+  "homepage": "https://github.com/darlanmendonca/chai-style#readme",
+  "engines": {
+    "node": ">=0.7.0"
+  },
+}
