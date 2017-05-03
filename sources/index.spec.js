@@ -7,6 +7,7 @@ let element
 beforeEach(function createElement() {
   element = document.createElement('div')
   element.style.color = 'red'
+  element.style.fontSize = '12px'
 })
 
 describe('chai-style', () => {
@@ -25,6 +26,18 @@ describe('chai-style', () => {
 
     it('should assert success', () => {
       expect(element).to.not.have.style('background-color')
+    })
+
+    it('should assert using hifen', () => {
+      expect(element).to.have.style('font-size')
+    })
+
+    it('should assert using camel case', () => {
+      expect(element).to.have.style('fontSize')
+    })
+
+    it('should assert success', () => {
+      expect(element).to.have.style('textTransform')
     })
   })
 
