@@ -20,55 +20,55 @@ describe('chai-style', () => {
   })
 
   describe('properties', () => {
-    it('should assert success', () => {
+    it('should have property', () => {
       expect(element).to.have.style('color')
     })
 
-    it('should assert success', () => {
+    it('should not have property', () => {
       expect(element).to.not.have.style('background-color')
     })
 
-    it('should assert using hifen', () => {
+    it('should get property using hifen', () => {
       expect(element).to.have.style('font-size')
     })
 
-    it('should assert using camel case', () => {
+    it('should get property using camelCase', () => {
       expect(element).to.have.style('fontSize')
     })
 
-    it('should assert with external style', () => {
+    it('should get property defined in external css', () => {
       expect(element).to.have.style('textTransform')
     })
   })
 
   describe('values', () => {
-    it('should assert success', () => {
+    it('should get value of property', () => {
       expect(element).to.have.style('color', 'red')
     })
 
-    it('should assert fail', () => {
+    it('should throw error, when value expected is different', () => {
       expect(() => {
         expect(element).to.have.style('color', 'blue')
       })
       .to.throw('expect DIV to have a blue color, is receiving red')
     })
 
-    it('should assert fail, using .not', () => {
+    it('should throw, when value expected not be equal', () => {
       expect(() => {
         expect(element).to.not.have.style('color', 'red')
       })
       .to.throw('expect DIV to not have a red color, is receiving red')
     })
 
-    it('should assert using hifen', () => {
+    it('should get value using hifen in property name', () => {
       expect(element).to.have.style('font-size', '12px')
     })
 
-    it('should assert using camel case', () => {
+    it('should get value using camelCase in property name', () => {
       expect(element).to.have.style('fontSize', '12px')
     })
 
-    it('should assert with external style', () => {
+    it('should get value defined in external css', () => {
       expect(element).to.have.style('textTransform', 'uppercase')
     })
   })
