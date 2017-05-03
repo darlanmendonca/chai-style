@@ -5,7 +5,7 @@ const {expect} = require('chai')
 let element
 
 beforeEach(function createElement() {
-  element = document.createElement('div')
+  element = document.querySelector('div')
   element.style.color = 'red'
   element.style.fontSize = '12px'
 })

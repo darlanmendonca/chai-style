@@ -12,7 +12,9 @@ function mockDOM() {
           div {text-transform: uppercase}
         </style>
       </head>
-      <body></body>
+      <body>
+        <div></div>
+      </body>
     </html>
   `)
   global.document = dom.window.document
