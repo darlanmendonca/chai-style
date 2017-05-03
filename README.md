@@ -18,32 +18,21 @@ const {expect} = require('chai')
   .use(require('chai-style'))
 ```
 
-## Chainables
+## Style as chainable assertion
 
-Use `.style` to inspect style of a element, e.g.
-
-### style
+Use method `.style` to inspect style of a element, e.g.
 
 ```js
 const element = document.querySelector('h2')
-// .style basically return a object CSSStyleDeclaration, using window.getComputedStyle(element)
-expect(element).to.have.style.color('red')
+expect(element).to.have.style('color', 'red')
 ```
 
-### css property
-
-After `.style` you can call any CSS property.
+Properties can be defined in camel case or separated by hifen, like in css
 
 ```js
-// check if element has a color defined in css
-expect(element).to.have.style.color
-```
-
-Properties with hifen, like 'background-color' need to be called in camel case
-
-```js
-// check if element has a background-color
-expect(element).to.have.style.backgroundColor
+expect(element).to.have.style('backgroundColor')
+// or
+expect(element).to.have.style('background-color')
 ```
 
 ### Values
@@ -52,20 +41,19 @@ Some browsers can generate a CSSStyleDeclaration with different values. I.e, the
 The same can occur with unit `0`, some browsers can convert to `0px`. And relative units like `1em` can be converted to `16px` (the value of body font size).
 
 ```js
-// bad assertion, can be broke in some browsers
+// bad assertion, is ugly, an can be broke in some browsers
 expect(window.getComputedStyle(element).color).to.be.equal('red')
+// chrome returns `rgb(255, 0, 0) instead red
 ```
-
-So in any assertion using ```.style.cssProperty('value expect here')```, I check equality using the rendered value.
-
 
 ```js
 // good assertion
-expect(element).to.have.style.color('red')
+expect(element).to.have.style('color', 'red')
 ```
 
 ```js
-// same behaviors to css units, like px, em, etc
-expect(element).to.have.style.marginTop('1em')
+// works with number values like px, em, etc
+expect(element).to.have.style('margin-top', '1em')
+// chrome return the value assigned to body, e.g. 16px instead 1em
 ```
 

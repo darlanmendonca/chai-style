@@ -4,26 +4,18 @@ function chaiStyle(chai, utils) {
   const {Assertion} = chai
   const {flag} = utils
 
-  Assertion.addProperty('style', function() {
-    this.computedStyle = window.getComputedStyle(flag(this, 'object'))
+  Assertion.addMethod('style', function(property, value) {
+    const element = flag(this, 'object')
+    const style = window.getComputedStyle(element)
 
-    Array
-      .from(this.computedStyle)
-      .forEach(addMethod)
+    const assertion = value
+      ? style[property] === value
+      : Boolean(style[property])
 
-    return this
+    const throwMessage = `expect ${element.tagName} to have a ${value} ${property}, is receiving ${style[property]}`
+    const throwMessageNegative = `expect ${element.tagName} to not have a ${value} ${property}, is receiving ${style[property]}`
+
+    this.assert(assertion, throwMessage, throwMessageNegative, value)
   })
-
-  function addMethod(property) {
-    Assertion.addMethod(property, function(value) {
-      const element = flag(this, 'object')
-
-      const assertion = this.computedStyle[property] === value
-      const throwMessage = `expect ${element.tagName} to have a ${value} ${property}, is receiving ${this.computedStyle[property]}`
-      const throwMessageNegative = `expect ${element.tagName} to not have a ${value} ${property}, is receiving ${this.computedStyle[property]}`
-
-      this.assert(assertion, throwMessage, throwMessageNegative, value)
-    })
-  }
 }
 

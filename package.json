@@ -31,5 +31,8 @@
     "istanbul": "1.0.0-alpha.2",
     "jsdom": "^10.1.0",
     "mocha": "^3.3.0"
+  },
+  "dependencies": {
+    "camelcase": "^4.1.0"
   }
 }
