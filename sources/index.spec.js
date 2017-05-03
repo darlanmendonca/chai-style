@@ -72,24 +72,32 @@ describe('chai-style', () => {
       expect(element).to.have.style('textTransform', 'uppercase')
     })
 
-    it('should assert color value by name', () => {
+    it('should assert color values by name', () => {
       expect(element).to.have.style('color', 'red')
     })
 
-    it('should assert color value using short hexadecimal', () => {
+    it('should assert color values using short hexadecimal', () => {
       expect(element).to.have.style('color', '#f00')
     })
 
-    it('should assert color value using hexadecimal', () => {
+    it('should assert color values using hexadecimal', () => {
       expect(element).to.have.style('color', '#ff0000')
     })
 
-    it('should assert color value using rgb', () => {
+    it('should assert color values using rgb', () => {
       expect(element).to.have.style('color', 'rgb(255, 0, 0)')
     })
 
-    it('should assert color value using rgba', () => {
+    it('should assert color values using rgba', () => {
       expect(element).to.have.style('color', 'rgba(255, 0, 0, 1)')
+    })
+
+    it('should assert color values using rgba', () => {
+      expect(element).to.have.style('color', 'rgba(255, 0, 0, 1)')
+    })
+
+    it('should assert color values using hsl', () => {
+      expect(element).to.have.style('color', 'hsl(0, 100%, 50%)')
     })
   })
 })
