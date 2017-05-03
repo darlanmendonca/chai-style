@@ -3,7 +3,7 @@
 
 # chai-style
 
-CSS Style assertions for elements, using [Chai.js](http://chaijs.com/)
+CSS Style assertions for elements, using [Chai.js](http://chaijs.com/). All assertions is builtin using `window.getComputedStyle` method.
 
 ## Install
 
