@@ -37,23 +37,19 @@ expect(element).to.have.style('background-color')
 
 ### Values
 
-Some browsers can generate a CSSStyleDeclaration with different values. I.e, the following css `color: red` can return `color: red` or `color: rgb(255, 0, 0)`, epending on the browser, what will broke your test.
-The same can occur with unit `0`, some browsers can convert to `0px`. And relative units like `1em` can be converted to `16px` (the value of body font size).
+To assert a value just pass a second argument to method style, like below
 
 ```js
-// bad assertion, is ugly, an can be broke in some browsers
-expect(window.getComputedStyle(element).color).to.be.equal('red')
-// chrome returns `rgb(255, 0, 0) instead red
+// assert if element has property display with value black
+expect(element).to.have.style('display', 'block')
 ```
+
+### Colors
+
+Some browsers can generate a differente value to color, like 'red' or 'rgb(255, 0, 0)'.
+Whatever, this assertion supports named colors, rgb, rgba, hexadecimal, and hsl
 
 ```js
-// good assertion
-expect(element).to.have.style('color', 'red')
+element.style.color = '#f00'
+expect(element).to.have.style('color', 'red') // asserts colors indiferrent of value used
 ```
-
-```js
-// works with number values like px, em, etc
-expect(element).to.have.style('margin-top', '1em')
-// chrome return the value assigned to body, e.g. 16px instead 1em
-```
-

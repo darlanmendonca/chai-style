@@ -11,11 +11,7 @@ function chaiStyle(chai, utils) {
 
     const isColor = color.namedColors[value]
       || color(value) instanceof color.RGB
-      || color(value) instanceof color.HSV // hue colors
       || color(value) instanceof color.HSL
-      || color(value) instanceof color.CMYK
-      || color(value) instanceof color.XYZ // alpha colors
-      || color(value) instanceof color.LAB // lab colors
 
     const assertion = value
       ? isColor
