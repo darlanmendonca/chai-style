@@ -1,6 +1,7 @@
 {
   "name": "chai-style",
   "version": "0.0.1",
+  "private": true,
   "description": "CSS Style assertions for elements, using Chai.js",
   "main": "index.js",
   "scripts": {
