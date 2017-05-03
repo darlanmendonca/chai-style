@@ -8,4 +8,15 @@ describe('chai-style', () => {
     expect(module).to.be.a('function')
     expect(module.name).to.be.equal('chaiStyle')
   })
+
+  it('should assert color property', () => {
+    const element = document.createElement('div')
+    element.style.color = 'red'
+    expect(element).to.have.style.color('red')
+  })
+
+  it('should assert display property', () => {
+    const element = document.createElement('div')
+    expect(element).to.have.style.display('block')
+  })
 })
