@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "description": "CSS Style assertions for elements, using Chai.js",
-  "main": "index.js",
+  "main": "sources/index.js",
   "scripts": {
+    "lint": "scripts/lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,4 +22,8 @@
   "engines": {
     "node": ">=0.7.0"
   },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-mn-component": "^1.1.0"
+  }
 }
