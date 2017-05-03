@@ -71,5 +71,25 @@ describe('chai-style', () => {
     it('should get value defined in external css', () => {
       expect(element).to.have.style('textTransform', 'uppercase')
     })
+
+    it('should assert color value by name', () => {
+      expect(element).to.have.style('color', 'red')
+    })
+
+    it('should assert color value using short hexadecimal', () => {
+      expect(element).to.have.style('color', '#f00')
+    })
+
+    it('should assert color value using hexadecimal', () => {
+      expect(element).to.have.style('color', '#ff0000')
+    })
+
+    it('should assert color value using rgb', () => {
+      expect(element).to.have.style('color', 'rgb(255, 0, 0)')
+    })
+
+    it('should assert color value using rgba', () => {
+      expect(element).to.have.style('color', 'rgba(255, 0, 0, 1)')
+    })
   })
 })
