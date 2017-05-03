@@ -19,8 +19,8 @@ function chaiStyle(chai, utils) {
       const element = flag(this, 'object')
 
       const assertion = this.computedStyle[property] === value
-      const throwMessage = `expect '${element.tagName}' to have a #{exp} ${property}, is receiving ${this.computedStyle[property]}`
-      const throwMessageNegative = `expect '${element.tagName}' to not have a #{exp} ${property}, is receiving ${this.computedStyle[property]}`
+      const throwMessage = `expect ${element.tagName} to have a ${value} ${property}, is receiving ${this.computedStyle[property]}`
+      const throwMessageNegative = `expect ${element.tagName} to not have a ${value} ${property}, is receiving ${this.computedStyle[property]}`
 
       this.assert(assertion, throwMessage, throwMessageNegative, value)
     })

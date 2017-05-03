@@ -1,6 +1,13 @@
-const {describe, it} = require('mocha')
+const {describe, it, beforeEach} = require('mocha')
 const {expect} = require('chai')
   .use(require('./index.js'))
+
+let element
+
+beforeEach(function createElement() {
+  element = document.createElement('div')
+  element.style.color = 'red'
+})
 
 describe('chai-style', () => {
   it('should exports a named function', () => {
@@ -9,14 +16,21 @@ describe('chai-style', () => {
     expect(module.name).to.be.equal('chaiStyle')
   })
 
-  it('should assert color property', () => {
-    const element = document.createElement('div')
-    element.style.color = 'red'
+  it('should assert success', () => {
     expect(element).to.have.style.color('red')
   })
 
-  it('should assert display property', () => {
-    const element = document.createElement('div')
-    expect(element).to.have.style.display('block')
+  it('should assert fail', () => {
+    expect(() => {
+      expect(element).to.have.style.color('blue')
+    })
+    .to.throw('expect DIV to have a blue color, is receiving red')
+  })
+
+  it('should assert fail, using .not', () => {
+    expect(() => {
+      expect(element).to.not.have.style.color('red')
+    })
+    .to.throw('expect DIV to not have a red color, is receiving red')
   })
 })
