@@ -19,7 +19,7 @@ const {expect} = require('chai')
 
 Use `.style` to inspect style of a element, e.g.
 
-### `style
+### style
 
 ```js
 const element = document.querySelector('h2')
@@ -45,7 +45,8 @@ expect(element).to.have.style.backgroundColor
 
 ### Values
 
-Some browsers can generate a CSSStyleDeclaration with different values. I.e, the following css `color: red` can return `color: red` or `color: rgb(255, 0, 0)`, what will broke your test if you use 
+Some browsers can generate a CSSStyleDeclaration with different values. I.e, the following css `color: red` can return `color: red` or `color: rgb(255, 0, 0)`, epending on the browser, what will broke your test.
+The same can occur with unit `0`, some browsers can convert to `0px`. And relative units like `1em` can be converted to `16px` (the value of body font size).
 
 ```js
 // bad assertion, can be broke in some browsers
