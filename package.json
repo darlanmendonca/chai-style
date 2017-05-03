@@ -6,7 +6,8 @@
   "main": "sources/index.js",
   "scripts": {
     "lint": "scripts/lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest": "scripts/lint",
+    "test": "scripts/test"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,12 @@
     "node": ">=0.7.0"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.13.1",
     "eslint": "^3.19.0",
-    "eslint-config-mn-component": "^1.1.0"
+    "eslint-config-mn-component": "^1.1.0",
+    "istanbul": "1.0.0-alpha.2",
+    "jsdom": "^10.1.0",
+    "mocha": "^3.3.0"
   }
 }
