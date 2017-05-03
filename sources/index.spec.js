@@ -36,7 +36,7 @@ describe('chai-style', () => {
       expect(element).to.have.style('fontSize')
     })
 
-    it('should assert success', () => {
+    it('should assert with external style', () => {
       expect(element).to.have.style('textTransform')
     })
   })
@@ -58,6 +58,18 @@ describe('chai-style', () => {
         expect(element).to.not.have.style('color', 'red')
       })
       .to.throw('expect DIV to not have a red color, is receiving red')
+    })
+
+    it('should assert using hifen', () => {
+      expect(element).to.have.style('font-size', '12px')
+    })
+
+    it('should assert using camel case', () => {
+      expect(element).to.have.style('fontSize', '12px')
+    })
+
+    it('should assert with external style', () => {
+      expect(element).to.have.style('textTransform', 'uppercase')
     })
   })
 })
