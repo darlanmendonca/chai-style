@@ -110,21 +110,33 @@ describe('chai-style', () => {
     })
   })
 
-  describe('css units', () => {
-    it('should assert values defined in EM unit', () => {
-      expect(element).to.have.style('margin', '2em auto')
-    })
-
-    it('should assert EM unit with respective value in pixels', () => {
-      expect(element).to.have.style('margin', '24px auto')
-    })
-
+  describe('Zeros (non unit)', () => {
     it('should assert values defined with non unit', () => {
       expect(element).to.have.style('padding', '0 10px')
     })
 
     it('should assert 0 unit with respective value in pixels', () => {
       expect(element).to.have.style('padding', '0px 10px')
+    })
+  })
+
+  describe('Pixels (px)', () => {
+    it('should assert values defined with non unit', () => {
+      expect(element).to.have.style('padding', '0 10px')
+    })
+
+    it('should assert 0 unit with respective value in pixels', () => {
+      expect(element).to.have.style('padding', '0px 10px')
+    })
+  })
+
+  describe('Relative to font size (em)', () => {
+    it('should assert values defined in EM unit', () => {
+      expect(element).to.have.style('margin', '2em auto')
+    })
+
+    it('should assert EM unit with respective value in pixels', () => {
+      expect(element).to.have.style('margin', '24px auto')
     })
   })
 })

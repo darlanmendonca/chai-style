@@ -54,7 +54,6 @@ function chaiStyle(chai, utils) {
         const number = Number(value.replace(cssUnit, ''))
         const isNumber = !isNaN(value) || !isNaN(number)
 
-
         if (isNumber) {
           switch(true) {
             case /em$/.test(value):
@@ -64,10 +63,9 @@ function chaiStyle(chai, utils) {
               value = number
           }
           return `${value}px`
-        } else {
-          return value
         }
 
+        return value
       }
     }
   })
