@@ -29,12 +29,15 @@ function chaiStyle(chai, utils) {
 
     const elementTag = element.tagName.toLowerCase()
 
-    const throwMessage = `expect ${elementTag} to have a ${value} ${property}, is receiving ${propertyValue}`
-    const throwMessageNegative = `expect ${elementTag} to not have a ${value} ${property}, is receiving ${propertyValue}`
+    const throwMessage = `expect ${elementTag} to have {${property}: ${value}}, is receiving {${property}: ${propertyValue}}`
+    const throwMessageNegative = `expect ${elementTag} to not have {${property}: ${value}}, is receiving {${property}: ${propertyValue}}`
 
     this.assert(assertion, throwMessage, throwMessageNegative, value)
 
     function compareCSSValue(a = '', b = '') {
+      const rootFontSize = window.getComputedStyle(document.documentElement)['font-size']
+        || '16'
+
       a = a
         .split(' ')
         .map(parseToPixel)
@@ -47,21 +50,23 @@ function chaiStyle(chai, utils) {
 
       function parseToPixel(value) {
         const isCSSUnit = cssUnit.test(value)
-        const fontSize = style.fontSize
-          ? style.fontSize.replace(cssUnit, '')
-          : '16'
+        const elementFontSize = style.fontSize.replace(cssUnit, '') || rootFontSize
 
         const number = Number(value.replace(cssUnit, ''))
         const isNumber = !isNaN(value) || !isNaN(number)
 
         if (isNumber) {
           switch(true) {
-            case /em$/.test(value):
-              value = number * fontSize
+            case /\dem$/.test(value):
+              value = number * elementFontSize
+              break
+            case /\drem$/.test(value):
+              value = number * rootFontSize
               break
             default:
               value = number
           }
+
           return `${value}px`
         }
 

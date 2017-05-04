@@ -53,14 +53,14 @@ describe('chai-style', () => {
       expect(() => {
         expect(element).to.have.style('color', 'blue')
       })
-      .to.throw('expect div to have a blue color, is receiving red')
+      .to.throw('expect div to have {color: blue}, is receiving {color: red}')
     })
 
     it('should throw, when value expected not be equal', () => {
       expect(() => {
         expect(element).to.not.have.style('color', 'red')
       })
-      .to.throw('expect div to not have a red color, is receiving red')
+      .to.throw('expect div to not have {color: red}, is receiving {color: red}')
     })
 
     it('should get value using hifen in property name', () => {
@@ -121,22 +121,34 @@ describe('chai-style', () => {
   })
 
   describe('Pixels (px)', () => {
-    it('should assert values defined with non unit', () => {
+    it('should assert with 0', () => {
       expect(element).to.have.style('padding', '0 10px')
     })
 
-    it('should assert 0 unit with respective value in pixels', () => {
+    it('should assert in pixels, but defined with 0', () => {
       expect(element).to.have.style('padding', '0px 10px')
     })
   })
 
   describe('Relative to font size (em)', () => {
-    it('should assert values defined in EM unit', () => {
+    it('should assert with EM', () => {
       expect(element).to.have.style('margin', '2em auto')
     })
 
-    it('should assert EM unit with respective value in pixels', () => {
+    it('should assert in pixels, but defined with EM', () => {
       expect(element).to.have.style('margin', '24px auto')
+    })
+  })
+
+  describe('Relative to root font size (rem)', () => {
+    it('should assert with REM', () => {
+      element.style.fontSize = '2rem'
+      expect(element).to.have.style('font-size', '2rem')
+    })
+
+    it('should assert in pixels, but defined with REM', () => {
+      element.style.fontSize = '2rem'
+      expect(element).to.have.style('font-size', '32px')
     })
   })
 })
