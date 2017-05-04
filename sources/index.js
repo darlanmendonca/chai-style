@@ -49,14 +49,13 @@ function chaiStyle(chai, utils) {
       return a.join(' ') === b.join(' ')
 
       function parseToPixel(value) {
-        const isCSSUnit = cssUnit.test(value)
         const elementFontSize = style.fontSize.replace(cssUnit, '') || rootFontSize
 
         const number = Number(value.replace(cssUnit, ''))
         const isNumber = !isNaN(value) || !isNaN(number)
 
         if (isNumber) {
-          switch(true) {
+          switch (true) {
             case /\dem$/.test(value):
               value = number * elementFontSize
               break
