@@ -5,9 +5,10 @@ function chaiStyle(chai, utils) {
   const {flag} = utils
   const color = require('onecolor')
 
-  Assertion.addMethod('style', function(property, value) {
+  Assertion.addMethod('style', function(property, value='') {
     const element = flag(this, 'object')
     const style = window.getComputedStyle(element)
+    value = value.trim()
 
     const isColor = color.namedColors[value]
       || color(value) instanceof color.RGB
@@ -19,8 +20,10 @@ function chaiStyle(chai, utils) {
         : style[property] === value
       : Boolean(style[property])
 
-    const throwMessage = `expect ${element.tagName} to have a ${value} ${property}, is receiving ${style[property]}`
-    const throwMessageNegative = `expect ${element.tagName} to not have a ${value} ${property}, is receiving ${style[property]}`
+    const elementTag = element.tagName.toLowerCase()
+
+    const throwMessage = `expect ${elementTag} to have a ${value} ${property}, is receiving ${style[property]}`
+    const throwMessageNegative = `expect ${elementTag} to not have a ${value} ${property}, is receiving ${style[property]}`
 
     this.assert(assertion, throwMessage, throwMessageNegative, value)
   })

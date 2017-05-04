@@ -8,6 +8,7 @@ beforeEach(function createElement() {
   element = document.querySelector('div')
   element.style.color = 'red'
   element.style.fontSize = '12px'
+  element.style.lineHeight = '1em'
 })
 
 describe('chai-style', () => {
@@ -50,14 +51,14 @@ describe('chai-style', () => {
       expect(() => {
         expect(element).to.have.style('color', 'blue')
       })
-      .to.throw('expect DIV to have a blue color, is receiving red')
+      .to.throw('expect div to have a blue color, is receiving red')
     })
 
     it('should throw, when value expected not be equal', () => {
       expect(() => {
         expect(element).to.not.have.style('color', 'red')
       })
-      .to.throw('expect DIV to not have a red color, is receiving red')
+      .to.throw('expect div to not have a red color, is receiving red')
     })
 
     it('should get value using hifen in property name', () => {
@@ -74,6 +75,10 @@ describe('chai-style', () => {
 
     it('should assert color values by name', () => {
       expect(element).to.have.style('color', 'red')
+    })
+
+    it('should assert color values by name with excessive spaces', () => {
+      expect(element).to.have.style('color', 'red ')
     })
 
     it('should assert color values using short hexadecimal', () => {
