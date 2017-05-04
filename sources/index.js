@@ -71,6 +71,10 @@ function chaiStyle(chai, utils) {
           return `${value}px`
         }
 
+        if (value === 'auto') {
+          value = '0px'
+        }
+
         return value
       }
     }
