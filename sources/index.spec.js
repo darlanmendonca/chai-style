@@ -1,8 +1,16 @@
-const {describe, it, beforeEach} = require('mocha')
+const {describe, it, before, beforeEach} = require('mocha')
 const {expect} = require('chai')
   .use(require('./index.js'))
 
 let element
+
+before(function addExternalStyle() {
+  const style = document.createElement('style')
+  style.innerHTML = 'div {text-transform: uppercase}'
+  document
+    .querySelector('head')
+    .appendChild(style)
+})
 
 beforeEach(function createElement() {
   element = document.createElement('div')
