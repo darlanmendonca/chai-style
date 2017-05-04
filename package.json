@@ -13,7 +13,15 @@
     "type": "git",
     "url": "git+https://github.com/darlanmendonca/chai-style.git"
   },
-  "keywords": [],
+  "keywords": [
+    "chai",
+    "chaijs",
+    "style",
+    "css",
+    "computedStyle",
+    "assertion",
+    "assert"
+  ],
   "author": "Darlan Mendonça <darlanmendonca@gmail.com> (https://darlanmendonca.github.io)",
   "license": "MIT",
   "bugs": {
