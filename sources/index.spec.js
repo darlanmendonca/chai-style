@@ -5,12 +5,14 @@ const {expect} = require('chai')
 let element
 
 beforeEach(function createElement() {
-  element = document.querySelector('div')
+  element = document.createElement('div')
+  document.body.appendChild(element)
   element.style.color = 'red'
   element.style.fontSize = '12px'
   element.style.lineHeight = '1em'
   element.style.margin = '2em auto'
   element.style.padding = '0 10px'
+  // element.style.height = '50vh'
 })
 
 describe('chai-style', () => {
@@ -53,14 +55,14 @@ describe('chai-style', () => {
       expect(() => {
         expect(element).to.have.style('color', 'blue')
       })
-      .to.throw('expect div to have {color: blue}, is receiving {color: red}')
+      .to.throw(/expect div to have {color: blue}, is receiving/)
     })
 
     it('should throw, when value expected not be equal', () => {
       expect(() => {
         expect(element).to.not.have.style('color', 'red')
       })
-      .to.throw('expect div to not have {color: red}, is receiving {color: red}')
+      .to.throw(/expect div to not have {color: red}, is receiving/)
     })
 
     it('should get value using hifen in property name', () => {
@@ -151,4 +153,10 @@ describe('chai-style', () => {
       expect(element).to.have.style('font-size', '32px')
     })
   })
+
+  // describe('Relative to viewport height (vh)', () => {
+  //   it('should assert with vh', () => {
+  //     expect(element).to.have.style('height', '50vh')
+  //   })
+  // })
 })

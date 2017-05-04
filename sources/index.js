@@ -11,11 +11,12 @@ function chaiStyle(chai, utils) {
     value = value.trim()
     const propertyValue = style[property]
 
+    const propertyValueIsColor = color(propertyValue) instanceof color.RGB
     const isColor = color.namedColors[value]
       || color(value) instanceof color.RGB
       || color(value) instanceof color.HSL
 
-    const cssUnit = /(px|em|rem|vw|vh|vmin|vmax|%|pt)$/
+    const cssUnit = /(px|em|rem)$/ // |vw|vh|vmin|vmax|%|pt
     const isCSSUnit = cssUnit.test(value) || /\d/.test(value)
 
     const assertion = value
@@ -25,7 +26,9 @@ function chaiStyle(chai, utils) {
           ? compareCSSValue(propertyValue, value)
           : propertyValue === value
         // : propertyValue === value
-      : Boolean(propertyValue)
+      : propertyValueIsColor
+        ? color(propertyValue).alpha() === 1
+        : Boolean(propertyValue)
 
     const elementTag = element.tagName.toLowerCase()
 
@@ -35,8 +38,7 @@ function chaiStyle(chai, utils) {
     this.assert(assertion, throwMessage, throwMessageNegative, value)
 
     function compareCSSValue(a = '', b = '') {
-      const rootFontSize = window.getComputedStyle(document.documentElement)['font-size']
-        || '16'
+      const rootFontSize = window.getComputedStyle(document.documentElement)['font-size'] || '16'
 
       a = a
         .split(' ')
