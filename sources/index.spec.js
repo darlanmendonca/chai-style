@@ -9,6 +9,8 @@ beforeEach(function createElement() {
   element.style.color = 'red'
   element.style.fontSize = '12px'
   element.style.lineHeight = '1em'
+  element.style.margin = '2em auto'
+  element.style.padding = '0 10px'
 })
 
 describe('chai-style', () => {
@@ -72,7 +74,9 @@ describe('chai-style', () => {
     it('should get value defined in external css', () => {
       expect(element).to.have.style('textTransform', 'uppercase')
     })
+  })
 
+  describe('colors', () => {
     it('should assert color values by name', () => {
       expect(element).to.have.style('color', 'red')
     })
@@ -103,6 +107,24 @@ describe('chai-style', () => {
 
     it('should assert color values using hsl', () => {
       expect(element).to.have.style('color', 'hsl(0, 100%, 50%)')
+    })
+  })
+
+  describe('css units', () => {
+    it('should assert values defined in EM unit', () => {
+      expect(element).to.have.style('margin', '2em auto')
+    })
+
+    it('should assert EM unit with respective value in pixels', () => {
+      expect(element).to.have.style('margin', '24px auto')
+    })
+
+    it('should assert values defined with non unit', () => {
+      expect(element).to.have.style('padding', '0 10px')
+    })
+
+    it('should assert 0 unit with respective value in pixels', () => {
+      expect(element).to.have.style('padding', '0px 10px')
     })
   })
 })
