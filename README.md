@@ -53,3 +53,25 @@ Whatever, this assertion supports named colors, rgb, rgba, hexadecimal, and hsl
 element.style.color = '#f00'
 expect(element).to.have.style('color', 'red') // asserts colors indiferrent of value used
 ```
+
+
+### Units
+
+To assert unit values, use like css
+
+```js
+element.style.height = '50vh'
+expect(element).to.have.style('height', '50vh')
+// too works if you assert with respective value in pixels
+expect(element).to.have.style('height', '323px') // 323 is the half of viewport in this case, equals to 50vh
+```
+
+Actually, the css units supported is
+
+- px (pixels)
+- em (relative to element fontStyle, or inherit)
+- rem (relative to root fontStyle, the html tag)
+- vh (viewport height)
+- vw (viewport width)
+
+Other units will come soon. Pull requests be welcome!
