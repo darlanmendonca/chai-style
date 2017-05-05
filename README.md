@@ -8,7 +8,6 @@ CSS Style assertions for elements, using [Chai.js](http://chaijs.com/). All asse
 ## Install
 
 ```sh
-# not available yet, WIP
 npm install --save-dev chai-style
 ```
 
