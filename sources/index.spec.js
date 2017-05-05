@@ -166,9 +166,7 @@ describe('chai-style', () => {
     it('should assert with vh', () => {
       expect(element).to.have.style('height', '50vh')
     })
-  })
 
-  describe('Relative to viewport height (vh)', () => {
     it('should assert with vh', () => {
       const viewPortHeight = document.documentElement.clientHeight
       const halfViewPortHeight = parseInt(viewPortHeight / 2)
