@@ -20,7 +20,6 @@ beforeEach(function createElement() {
   element.style.lineHeight = '1em'
   element.style.margin = '2em auto'
   element.style.padding = '0 10px'
-  // element.style.height = '50vh'
 })
 
 describe('chai-style', () => {
@@ -161,10 +160,4 @@ describe('chai-style', () => {
       expect(element).to.have.style('font-size', '32px')
     })
   })
-
-  // describe('Relative to viewport height (vh)', () => {
-  //   it('should assert with vh', () => {
-  //     expect(element).to.have.style('height', '50vh')
-  //   })
-  // })
 })

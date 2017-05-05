@@ -38,7 +38,9 @@ function chaiStyle(chai, utils) {
     this.assert(assertion, throwMessage, throwMessageNegative, value)
 
     function compareCSSValue(a = '', b = '') {
-      const rootFontSize = window.getComputedStyle(document.documentElement)['font-size'] || '16'
+      const rootFontSize = window
+        .getComputedStyle(document.documentElement)['font-size'].replace('px', '')
+        || '16'
 
       a = a
         .split(' ')
@@ -67,7 +69,6 @@ function chaiStyle(chai, utils) {
             default:
               value = number
           }
-
           return `${value}px`
         }
 
