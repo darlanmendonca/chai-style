@@ -16,7 +16,7 @@ function chaiStyle(chai, utils) {
       || color(value) instanceof color.RGB
       || color(value) instanceof color.HSL
 
-    const cssUnit = /(px|em|rem|vh)$/ // |vw|vh|vmin|vmax|%|pt
+    const cssUnit = /(px|em|rem|vh|vw)$/ // |vw|vh|vmin|vmax|%|pt
     const isCSSUnit = cssUnit.test(value) || /\d/.test(value)
 
     const assertion = value
@@ -44,12 +44,19 @@ function chaiStyle(chai, utils) {
       a = a
         .split(' ')
         .map(parseToPixel)
+        .join(' ')
 
       b = b
         .split(' ')
         .map(parseToPixel)
+        .join(' ')
 
-      return a.join(' ') === b.join(' ')
+      if (b.includes('auto')) {
+        const reg = new RegExp(b.replace('auto', '(\\d+(.\\d+)?px|auto)'))
+        return reg.test(a)
+      } else {
+        return a === b
+      }
 
       function parseToPixel(value) {
         const elementFontSize = style.fontSize.replace(cssUnit, '')// || rootFontSize
@@ -68,14 +75,13 @@ function chaiStyle(chai, utils) {
             case /\dvh$/.test(value):
               value = parseInt((number / 100) * document.documentElement.clientHeight)
               break
+            case /\dvw$/.test(value):
+              value = parseInt((number / 100) * document.documentElement.clientWidth)
+              break
             default:
               value = number
           }
           return `${value}px`
-        }
-
-        if (value === 'auto') {
-          value = '0px'
         }
 
         return value

@@ -21,6 +21,7 @@ beforeEach(function createElement() {
   element.style.margin = '2em auto'
   element.style.padding = '0 10px'
   element.style.height = '50vh'
+  element.style.width = '50vw'
 })
 
 describe('chai-style', () => {
@@ -167,10 +168,22 @@ describe('chai-style', () => {
       expect(element).to.have.style('height', '50vh')
     })
 
-    it('should assert with vh', () => {
+    it('should assert in pixels, but defined with vh', () => {
       const viewPortHeight = document.documentElement.clientHeight
       const halfViewPortHeight = parseInt(viewPortHeight / 2)
       expect(element).to.have.style('height', `${halfViewPortHeight}px`)
+    })
+  })
+
+  describe('Relative to viewport width (vw)', () => {
+    it('should assert with vw', () => {
+      expect(element).to.have.style('width', '50vw')
+    })
+
+    it('should assert in pixels, but defined with vw', () => {
+      const viewPortWidth = document.documentElement.clientWidth
+      const halfViewPortHeight = parseInt(viewPortWidth / 2)
+      expect(element).to.have.style('width', `${halfViewPortHeight}px`)
     })
   })
 })
