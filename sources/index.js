@@ -73,10 +73,10 @@ function chaiStyle(chai, utils) {
               value = number * rootFontSize
               break
             case /\dvh$/.test(value):
-              value = parseInt((number / 100) * document.documentElement.clientHeight)
+              value = (number / 100) * document.documentElement.clientHeight
               break
             case /\dvw$/.test(value):
-              value = parseInt((number / 100) * document.documentElement.clientWidth)
+              value = (number / 100) * document.documentElement.clientWidth
               break
             default:
               value = number

@@ -170,7 +170,7 @@ describe('chai-style', () => {
 
     it('should assert in pixels, but defined with vh', () => {
       const viewPortHeight = document.documentElement.clientHeight
-      const halfViewPortHeight = parseInt(viewPortHeight / 2)
+      const halfViewPortHeight = viewPortHeight / 2
       expect(element).to.have.style('height', `${halfViewPortHeight}px`)
     })
   })
@@ -182,7 +182,7 @@ describe('chai-style', () => {
 
     it('should assert in pixels, but defined with vw', () => {
       const viewPortWidth = document.documentElement.clientWidth
-      const halfViewPortHeight = parseInt(viewPortWidth / 2)
+      const halfViewPortHeight = viewPortWidth / 2
       expect(element).to.have.style('width', `${halfViewPortHeight}px`)
     })
   })
