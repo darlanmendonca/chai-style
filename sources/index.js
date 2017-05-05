@@ -52,7 +52,7 @@ function chaiStyle(chai, utils) {
         .join(' ')
 
       if (b.includes('auto')) {
-        const reg = new RegExp(b.replace('auto', '(\\d+(.\\d+)?px|auto)'))
+        const reg = new RegExp(b.replace(/auto/g, '(\\d+(.\\d+)?px|auto)'))
         return reg.test(a)
       } else {
         return a === b
