@@ -16,7 +16,7 @@ function chaiStyle(chai, utils) {
       || color(value) instanceof color.RGB
       || color(value) instanceof color.HSL
 
-    const cssUnit = /(px|em|rem)$/ // |vw|vh|vmin|vmax|%|pt
+    const cssUnit = /(px|em|rem|vh)$/ // |vw|vh|vmin|vmax|%|pt
     const isCSSUnit = cssUnit.test(value) || /\d/.test(value)
 
     const assertion = value
@@ -25,7 +25,6 @@ function chaiStyle(chai, utils) {
         : isCSSUnit
           ? compareCSSValue(propertyValue, value)
           : propertyValue === value
-        // : propertyValue === value
       : propertyValueIsColor
         ? color(propertyValue).alpha() === 1
         : Boolean(propertyValue)
@@ -37,7 +36,7 @@ function chaiStyle(chai, utils) {
 
     this.assert(assertion, throwMessage, throwMessageNegative, value)
 
-    function compareCSSValue(a = '', b = '') {
+    function compareCSSValue(a, b) {
       const rootFontSize = window
         .getComputedStyle(document.documentElement)['font-size'].replace('px', '')
         || '16'
@@ -53,7 +52,7 @@ function chaiStyle(chai, utils) {
       return a.join(' ') === b.join(' ')
 
       function parseToPixel(value) {
-        const elementFontSize = style.fontSize.replace(cssUnit, '') || rootFontSize
+        const elementFontSize = style.fontSize.replace(cssUnit, '')// || rootFontSize
 
         const number = Number(value.replace(cssUnit, ''))
         const isNumber = !isNaN(value) || !isNaN(number)
@@ -65,6 +64,9 @@ function chaiStyle(chai, utils) {
               break
             case /\drem$/.test(value):
               value = number * rootFontSize
+              break
+            case /\dvh$/.test(value):
+              value = parseInt((number / 100) * document.documentElement.clientHeight)
               break
             default:
               value = number
