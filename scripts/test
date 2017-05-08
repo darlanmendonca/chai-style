@@ -9,7 +9,7 @@ case $1 in
   firefox) browser="Firefox" ;;
   nightmare) browser="Nightmare" ;;
   all) browser="Chrome,Safari,Firefox,Nightmare" ;;
-  *) browser=$1 ;;
+  # *) browser=$1 ;;
 esac
 
 if [ $BROWSER_STACK_ENV ]; then
