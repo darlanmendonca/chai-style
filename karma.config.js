@@ -13,7 +13,23 @@ function KarmaConfig(config) {
       'Safari',
       'Firefox',
       'Nightmare',
+      'bsChrome',
     ],
+
+    customLaunchers: {
+      bsChrome: {
+        base: 'BrowserStack',
+        browser: 'chrome',
+        browser_version: '57.0', // eslint-disable-line camelcase
+        os: 'OS X',
+        os_version: 'Yosemite', // eslint-disable-line camelcase
+      },
+    },
+
+    browserStack: {
+      username: process.env.BROWSERSTACK_USERNAME,
+      accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
+    },
 
     frameworks: [
       'browserify',
