@@ -13,7 +13,7 @@ case $1 in
 esac
 
 if [ $BROWSER_STACK_ENV ]; then
-  browser="bsChrome"
+  browser="browserStack:Chrome"
 fi
 
 if [ ! $browser ]; then

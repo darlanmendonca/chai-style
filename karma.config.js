@@ -13,11 +13,11 @@ function KarmaConfig(config) {
       'Safari',
       'Firefox',
       'Nightmare',
-      'bsChrome',
+      'browserStack:Chrome',
     ],
 
     customLaunchers: {
-      bsChrome: {
+      'browserStack:Chrome': {
         base: 'BrowserStack',
         browser: 'chrome',
         browser_version: '57.0', // eslint-disable-line camelcase
