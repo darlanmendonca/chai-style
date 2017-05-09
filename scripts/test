@@ -2,7 +2,6 @@
 
 set -e
 
-
 case $1 in
   chrome) browser="Chrome" ;;
   safari) browser="Safari" ;;
@@ -12,8 +11,8 @@ case $1 in
   # *) browser=$1 ;;
 esac
 
-if [ $BROWSER_STACK_ENV ]; then
-  browser="browserStack:Chrome"
+if [[ $BROWSER_STACK_ENV ]] || [[ $1 == browserstack:* ]]; then
+  browser="$1"
 fi
 
 if [ ! $browser ]; then

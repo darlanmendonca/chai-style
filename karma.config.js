@@ -13,11 +13,11 @@ function KarmaConfig(config) {
       'Safari',
       'Firefox',
       'Nightmare',
-      'browserStack:Chrome',
+      'browserstack:chrome',
     ],
 
     customLaunchers: {
-      'browserStack:Chrome': {
+      'browserstack:chrome': {
         base: 'BrowserStack',
         browser: 'chrome',
         browser_version: '57.0', // eslint-disable-line camelcase
@@ -30,6 +30,11 @@ function KarmaConfig(config) {
       username: process.env.BROWSERSTACK_USERNAME,
       accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
     },
+
+    browserDisconnectTimeout: 10000,
+    browserDisconnectTolerance: 1,
+    browserNoActivityTimeout: 4 * 60 * 1000,
+    captureTimeout : 4 * 60 * 1000,
 
     frameworks: [
       'browserify',
