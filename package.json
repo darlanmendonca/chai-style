@@ -30,9 +30,6 @@
   "engines": {
     "node": ">=0.7.0"
   },
-  "dependencies": {
-    "onecolor": "^3.0.4"
-  },
   "devDependencies": {
     "browserify": "^14.3.0",
     "chai": "^3.5.0",

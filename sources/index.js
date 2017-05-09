@@ -3,7 +3,6 @@ module.exports = chaiStyle
 function chaiStyle(chai, utils) {
   const {Assertion} = chai
   const {flag} = utils
-  const color = require('onecolor')
 
   Assertion.addMethod('style', function(property, value = '') {
     const element = flag(this, 'object')
@@ -11,23 +10,9 @@ function chaiStyle(chai, utils) {
     value = value.trim()
     const propertyValue = style[property]
 
-    const propertyValueIsColor = color(propertyValue) instanceof color.RGB
-    const isColor = color.namedColors[value]
-      || color(value) instanceof color.RGB
-      || color(value) instanceof color.HSL
-
-    const cssUnit = /(px|em|rem|vh|vw)$/ // |vw|vh|vmin|vmax|%|pt
-    const isCSSUnit = cssUnit.test(value) || /\d/.test(value)
-
     const assertion = value
-      ? isColor
-        ? color(propertyValue).equals(color(value))
-        : isCSSUnit
-          ? compareCSSValue(propertyValue, value)
-          : propertyValue === value
-      : propertyValueIsColor
-        ? color(propertyValue).alpha() === 1
-        : Boolean(propertyValue)
+      ? compareCSSValue(propertyValue, value)
+      : Boolean(propertyValue)
 
     const elementTag = element.tagName.toLowerCase()
 
@@ -36,56 +21,25 @@ function chaiStyle(chai, utils) {
 
     this.assert(assertion, throwMessage, throwMessageNegative, value)
 
-    function compareCSSValue(a, b) {
-      const rootFontSize = window
-        .getComputedStyle(document.documentElement)['font-size'].replace('px', '')
-        || '16'
+    function compareCSSValue(computed, expected) {
+      const fake = document.createElement('div')
+      fake.style.fontSize = style.fontSize
+      fake.style.setProperty(property, expected, 'important')
+      const iframe = document.createElement('iframe')
+      iframe.style.visibility = 'hidden'
+      document.body.appendChild(iframe)
+      iframe.appendChild(fake)
+      const fakeStyle = window.getComputedStyle(fake)
+      const value = fakeStyle[property]
 
-      a = a
-        .split(' ')
-        .map(parseToPixel)
-        .join(' ')
+      const hasAutoValue = value.includes('auto')
+      const reg = new RegExp(value.replace(/auto/g, '(\\d+(.\\d+)?px|auto)'))
 
-      b = b
-        .split(' ')
-        .map(parseToPixel)
-        .join(' ')
-
-      if (b.includes('auto')) {
-        const reg = new RegExp(b.replace(/auto/g, '(\\d+(.\\d+)?px|auto)'))
-        return reg.test(a)
-      } else {
-        return a === b
-      }
-
-      function parseToPixel(value) {
-        const elementFontSize = style.fontSize.replace(cssUnit, '')// || rootFontSize
-
-        const number = Number(value.replace(cssUnit, ''))
-        const isNumber = !isNaN(value) || !isNaN(number)
-
-        if (isNumber) {
-          switch (true) {
-            case /\dem$/.test(value):
-              value = number * elementFontSize
-              break
-            case /\drem$/.test(value):
-              value = number * rootFontSize
-              break
-            case /\dvh$/.test(value):
-              value = (number / 100) * document.documentElement.clientHeight
-              break
-            case /\dvw$/.test(value):
-              value = (number / 100) * document.documentElement.clientWidth
-              break
-            default:
-              value = number
-          }
-          return `${value}px`
-        }
-
-        return value
-      }
+      // console.log(`${computed} === ${value}`, computed === value)
+      // console.log('expected', reg.toString(), reg.test(computed))
+      return hasAutoValue
+        ? reg.test(computed)
+        : computed === value
     }
   })
 }
