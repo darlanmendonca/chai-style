@@ -12,7 +12,7 @@ function chaiStyle(chai, utils) {
 
     const assertion = value
       ? compareCSSValue(propertyValue, value)
-      : Boolean(propertyValue)
+      : !Boolean(propertyValue) || propertyValue !== 'rgba(0, 0, 0, 0)'
 
     const elementTag = element.tagName.toLowerCase()
 
