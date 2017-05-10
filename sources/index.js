@@ -8,7 +8,11 @@ function chaiStyle(chai, utils) {
     const element = flag(this, 'object')
     const style = window.getComputedStyle(element)
     value = value.trim()
-    const propertyValue = style[property] === 'rgba(0, 0, 0, 0)'
+
+    const isNonColors = style[property] === 'rgba(0, 0, 0, 0)' // webkit
+      || style[property] === 'transparent' // firefox
+
+    const propertyValue = isNonColors
       ? ''
       : style[property]
 
