@@ -16,7 +16,7 @@ if [[ $1 == browserstack:* ]]; then
 fi
 
 if [ $BROWSER_STACK_ENV ]; then
-  browser="browserstack:chrome"
+  browser="browserstack:chrome,browserstack:safari,browserstack:firefox"
 fi
 
 if [ ! $browser ]; then
