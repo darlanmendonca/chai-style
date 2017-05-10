@@ -14,6 +14,7 @@ function KarmaConfig(config) {
       'Firefox',
       'Nightmare',
       'browserstack:chrome',
+      'browserstack:safari',
     ],
 
     customLaunchers: {
@@ -23,6 +24,13 @@ function KarmaConfig(config) {
         browser_version: '57.0', // eslint-disable-line camelcase
         os: 'Windows',
         os_version: '10', // eslint-disable-line camelcase
+      },
+      'browserstack:safari': {
+        base: 'BrowserStack',
+        browser: 'safai',
+        browser_version: '10.1', // eslint-disable-line camelcase
+        os: 'OS X',
+        os_version: 'Yosemite', // eslint-disable-line camelcase
       },
     },
 
