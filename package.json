@@ -36,8 +36,6 @@
     "coveralls": "^2.13.1",
     "eslint": "^3.19.0",
     "eslint-config-mn-component": "^1.1.0",
-    "istanbul": "1.0.0-alpha.2",
-    "jsdom": "^10.1.0",
     "karma": "^1.7.0",
     "karma-browserify": "^5.1.1",
     "karma-browserstack-launcher": "^1.2.0",

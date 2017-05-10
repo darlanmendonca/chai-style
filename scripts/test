@@ -8,7 +8,7 @@ case $1 in
   firefox) browser="Firefox" ;;
   nightmare) browser="Nightmare" ;;
   all) browser="Chrome,Safari,Firefox,Nightmare" ;;
-  # *) browser=$1 ;;
+  *) browser="Nightmare" ;;
 esac
 
 if [[ $1 == browserstack:* ]]; then
@@ -19,22 +19,4 @@ if [ $BROWSER_STACK_ENV ]; then
   browser="browserstack:chrome,browserstack:safari,browserstack:firefox"
 fi
 
-if [ ! $browser ]; then
-
-  export NODE_ENV=test
-  ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- \
-  $@ \
-  test/unit/*.js \
-  sources/**/*.spec.js
-
-  if [ ! -z "$EXPORT_COVERAGE" ]; then
-    cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-
-    rm -rf ./coverage
-  fi
-
-else
-
-  ./node_modules/.bin/karma start karma.config.js --browsers $browser $@
-
-fi
+./node_modules/.bin/karma start karma.config.js --browsers $browser $@
