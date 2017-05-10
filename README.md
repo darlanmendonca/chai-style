@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/darlanmendonca/chai-style.svg?branch=master)](https://travis-ci.org/darlanmendonca/chai-style)
-[![Coverage Status](https://coveralls.io/repos/github/darlanmendonca/chai-style/badge.svg?branch=master)](https://coveralls.io/github/darlanmendonca/chai-style?branch=master)
+<!-- [![Coverage Status](https://coveralls.io/repos/github/darlanmendonca/chai-style/badge.svg?branch=master)](https://coveralls.io/github/darlanmendonca/chai-style?branch=master) -->
 
 # chai-style
 
