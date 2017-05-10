@@ -8,11 +8,13 @@ function chaiStyle(chai, utils) {
     const element = flag(this, 'object')
     const style = window.getComputedStyle(element)
     value = value.trim()
-    const propertyValue = style[property]
+    const propertyValue = style[property] === 'rgba(0, 0, 0, 0)'
+      ? ''
+      : style[property]
 
     const assertion = value
       ? compareCSSValue(propertyValue, value)
-      : !Boolean(propertyValue) || propertyValue !== 'rgba(0, 0, 0, 0)'
+      : Boolean(propertyValue)
 
     const elementTag = element.tagName.toLowerCase()
 
