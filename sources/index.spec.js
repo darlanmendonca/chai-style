@@ -182,9 +182,7 @@ describe('chai-style', () => {
     })
 
     it('should assert in pixels, but defined with VW', () => {
-      const viewPortWidth = document.documentElement.clientWidth
-      const halfViewPortHeight = viewPortWidth / 2
-      expect(element).to.have.style('width', `${halfViewPortHeight}px`)
+      expect(element).to.have.style('width', `${window.innerWidth / 2}px`)
     })
   })
 
