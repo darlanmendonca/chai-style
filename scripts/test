@@ -11,8 +11,12 @@ case $1 in
   # *) browser=$1 ;;
 esac
 
-if [[ $BROWSER_STACK_ENV ]] || [[ $1 == browserstack:* ]]; then
+if [[ $1 == browserstack:* ]]; then
   browser="$1"
+fi
+
+if [ $BROWSER_STACK_ENV ]; then
+  browser="browserstack:chrome"
 fi
 
 if [ ! $browser ]; then

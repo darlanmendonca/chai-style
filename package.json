@@ -30,9 +30,6 @@
   "engines": {
     "node": ">=0.7.0"
   },
-  "dependencies": {
-    "onecolor": "^3.0.4"
-  },
   "devDependencies": {
     "browserify": "^14.3.0",
     "chai": "^3.5.0",
@@ -41,7 +38,7 @@
     "eslint-config-mn-component": "^1.1.0",
     "istanbul": "1.0.0-alpha.2",
     "jsdom": "^10.1.0",
-    "karma": "^1.6.0",
+    "karma": "^1.7.0",
     "karma-browserify": "^5.1.1",
     "karma-browserstack-launcher": "^1.2.0",
     "karma-chrome-launcher": "^2.1.0",

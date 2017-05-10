@@ -22,6 +22,7 @@ beforeEach(function createElement() {
   element.style.padding = '0 10px'
   element.style.height = '50vh'
   element.style.width = '50vw'
+  element.style.boxShadow = '0 0 10px red'
 })
 
 describe('chai-style', () => {
@@ -168,7 +169,7 @@ describe('chai-style', () => {
       expect(element).to.have.style('height', '50vh')
     })
 
-    it('should assert in pixels, but defined with vh', () => {
+    it('should assert in pixels, but defined with VH', () => {
       const viewPortHeight = document.documentElement.clientHeight
       const halfViewPortHeight = viewPortHeight / 2
       expect(element).to.have.style('height', `${halfViewPortHeight}px`)
@@ -180,10 +181,16 @@ describe('chai-style', () => {
       expect(element).to.have.style('width', '50vw')
     })
 
-    it('should assert in pixels, but defined with vw', () => {
+    it('should assert in pixels, but defined with VW', () => {
       const viewPortWidth = document.documentElement.clientWidth
       const halfViewPortHeight = viewPortWidth / 2
       expect(element).to.have.style('width', `${halfViewPortHeight}px`)
+    })
+  })
+
+  describe('Different order of values', () => {
+    it('test box-shadow', () => {
+      expect(element).to.have.style('box-shadow', '0 0 10px red')
     })
   })
 })
