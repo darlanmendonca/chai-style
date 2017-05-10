@@ -27,7 +27,7 @@ function KarmaConfig(config) {
       },
       'browserstack:safari': {
         base: 'BrowserStack',
-        browser: 'safai',
+        browser: 'safari',
         browser_version: '10.1', // eslint-disable-line camelcase
         os: 'OS X',
         os_version: 'Yosemite', // eslint-disable-line camelcase
