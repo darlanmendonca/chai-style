@@ -1,3 +1,7 @@
+// http://stackoverflow.com/questions/35122592/karma-browserify-coverage-reports-contain-file-include-paths-instead-of-source-c
+
+const istanbul = require('browserify-istanbul')
+
 module.exports = KarmaConfig
 
 function KarmaConfig(config) {
@@ -6,7 +10,8 @@ function KarmaConfig(config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_ERROR,
-    singleRun: true,
+    singleRun: false,
+    autoWatch: false,
 
     browsers: [
       'Chrome',
@@ -61,8 +66,6 @@ function KarmaConfig(config) {
       'sources/**/*.spec.js',
     ],
 
-    exclude: [],
-
     preprocessors: {
       'sources/**/*.js': ['browserify'],
     },
@@ -73,10 +76,22 @@ function KarmaConfig(config) {
 
     reporters: [
       'mocha',
+      'coverage',
     ],
 
     browserify: {
       debug: true,
+      transform: [
+        istanbul({
+          ignore: ['**/node_modules/**'],
+        }),
+      ],
+    },
+
+    coverageReporter: {
+      type: 'html',
+      dir: 'coverage/',
+      subdir: '.',
     },
 
     mochaReporter: {
