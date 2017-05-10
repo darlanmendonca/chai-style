@@ -169,7 +169,7 @@ describe('chai-style', () => {
       expect(element).to.have.style('height', '50vh')
     })
 
-    it('should assert in pixels, but defined with vh', () => {
+    it('should assert in pixels, but defined with VH', () => {
       const viewPortHeight = document.documentElement.clientHeight
       const halfViewPortHeight = viewPortHeight / 2
       expect(element).to.have.style('height', `${halfViewPortHeight}px`)
@@ -181,7 +181,7 @@ describe('chai-style', () => {
       expect(element).to.have.style('width', '50vw')
     })
 
-    it('should assert in pixels, but defined with vw', () => {
+    it('should assert in pixels, but defined with VW', () => {
       const viewPortWidth = document.documentElement.clientWidth
       const halfViewPortHeight = viewPortWidth / 2
       expect(element).to.have.style('width', `${halfViewPortHeight}px`)
