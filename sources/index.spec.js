@@ -88,6 +88,10 @@ describe('chai-style', () => {
     })
 
     it('should assert with any order of value', () => {
+      expect(element).to.have.style('box-shadow', '#F00 0px 0px 10px 0px')
+    })
+
+    it('should assert with any order of value in camelCase property', () => {
       expect(element).to.have.style('boxShadow', '#F00 0px 0px 10px 0px')
     })
   })
