@@ -27,6 +27,11 @@ beforeEach(function createElement() {
 
 describe('chai-style', () => {
   describe('module', () => {
+    it('should have a package.json, with a main file', () => {
+      const packageJSON = require('../package.json')
+      expect(packageJSON).to.have.property('main', 'sources/index.js')
+    })
+
     it('should exports a named function', () => {
       const module = require('./index.js')
       expect(module).to.be.a('function')
