@@ -113,10 +113,6 @@ describe('chai-style', () => {
       expect(element).to.have.style('color', 'rgba(255, 0, 0, 1)')
     })
 
-    it('should assert color values using rgba', () => {
-      expect(element).to.have.style('color', 'rgba(255, 0, 0, 1)')
-    })
-
     it('should assert color values using hsl', () => {
       expect(element).to.have.style('color', 'hsl(0, 100%, 50%)')
     })
@@ -184,8 +180,8 @@ describe('chai-style', () => {
     })
   })
 
-  describe('Different order of values', () => {
-    it('test box-shadow', () => {
+  describe('Differents order of pixels values', () => {
+    it('box-shadow test', () => {
       expect(element).to.have.style('box-shadow', '0 0 10px red')
     })
   })
