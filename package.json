@@ -22,6 +22,9 @@
     "assert"
   ],
   "author": "Darlan Mendonça <darlanmendonca@gmail.com> (https://darlanmendonca.github.io)",
+  "contributors": [
+    "Lucas Alencar <lucasalencarlino@hotmail.com> (https://github.com/alencar13)"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/darlanmendonca/chai-style/issues"
