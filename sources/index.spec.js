@@ -91,6 +91,14 @@ describe('chai-style', () => {
     it('should get value defined in external css', () => {
       expect(element).to.have.style('textTransform', 'uppercase')
     })
+
+    it('should assert with any order of value', () => {
+      expect(element).to.have.style('box-shadow', '#F00 0px 0px 10px 0px')
+    })
+
+    it('should assert with any order of value in camelCase property', () => {
+      expect(element).to.have.style('boxShadow', '#F00 0px 0px 10px 0px')
+    })
   })
 
   describe('colors', () => {
@@ -112,10 +120,6 @@ describe('chai-style', () => {
 
     it('should assert color values using rgb', () => {
       expect(element).to.have.style('color', 'rgb(255, 0, 0)')
-    })
-
-    it('should assert color values using rgba', () => {
-      expect(element).to.have.style('color', 'rgba(255, 0, 0, 1)')
     })
 
     it('should assert color values using rgba', () => {
@@ -186,12 +190,6 @@ describe('chai-style', () => {
 
     it('should assert in pixels, but defined with VW', () => {
       expect(element).to.have.style('width', `${window.innerWidth / 2}px`)
-    })
-  })
-
-  describe('Different order of values', () => {
-    it('test box-shadow', () => {
-      expect(element).to.have.style('box-shadow', '0 0 10px red')
     })
   })
 })

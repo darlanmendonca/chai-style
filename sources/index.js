@@ -28,9 +28,10 @@ function chaiStyle(chai, utils) {
     this.assert(assertion, throwMessage, throwMessageNegative, value)
 
     function compareCSSValue(computed, expected) {
+      const propertyHifenCase = property.replace(/[A-Z]/g, (match) => '-' + match.toLowerCase())
       const fake = document.createElement('div')
       fake.style.fontSize = style.fontSize
-      fake.style.setProperty(property, expected, 'important')
+      fake.style.setProperty(propertyHifenCase, expected, 'important')
       const iframe = document.createElement('iframe')
       iframe.style.visibility = 'hidden'
       document.body.appendChild(iframe)
@@ -41,8 +42,6 @@ function chaiStyle(chai, utils) {
       const hasAutoValue = value.includes('auto')
       const reg = new RegExp(value.replace(/auto/g, '(\\d+(.\\d+)?px|auto)'))
 
-      // console.log(`${computed} === ${value}`, computed === value)
-      // console.log('expected', reg.toString(), reg.test(computed))
       return hasAutoValue
         ? reg.test(computed)
         : computed === value
