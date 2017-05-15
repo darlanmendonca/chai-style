@@ -1,6 +1,17 @@
 module.exports = KarmaConfig
 
 function KarmaConfig(config) {
+  const browser = process.argv[5]
+  const browsers = [
+    'Chrome',
+    'Safari',
+    'Firefox',
+    'Nightmare',
+    'browserstack:chrome',
+    'browserstack:safari',
+    'browserstack:firefox',
+  ]
+
   config.set({
     basePath: '',
     port: 9876,
@@ -8,15 +19,7 @@ function KarmaConfig(config) {
     logLevel: config.LOG_ERROR,
     singleRun: true,
 
-    browsers: [
-      'Chrome',
-      'Safari',
-      'Firefox',
-      'Nightmare',
-      'browserstack:chrome',
-      'browserstack:safari',
-      'browserstack:firefox',
-    ],
+    browsers,
 
     customLaunchers: {
       'browserstack:chrome': {
@@ -55,6 +58,7 @@ function KarmaConfig(config) {
     frameworks: [
       'browserify',
       'mocha',
+      'detectBrowsers',
     ],
 
     files: [
@@ -81,6 +85,16 @@ function KarmaConfig(config) {
 
     mochaReporter: {
       output: 'autowatch',
+    },
+
+    detectBrowsers: {
+      enabled: browser === 'all',
+      usePhantomJS: false,
+      postDetection(availableBrowsers) {
+        const runnableBrowsers = availableBrowsers.filter(browser => browsers.indexOf(browser) > -1)
+        console.log(`Testing specs in ${runnableBrowsers.length} browsers (${runnableBrowsers.join(', ')})`)
+        return runnableBrowsers
+      },
     },
   })
 }
