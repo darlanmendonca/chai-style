@@ -4,26 +4,8 @@ const {expect} = require('chai')
 
 let element
 
-before(function addExternalStyle() {
-  const style = document.createElement('style')
-  style.innerHTML = 'div {text-transform: uppercase}'
-  document
-    .querySelector('head')
-    .appendChild(style)
-})
-
-beforeEach(function createElement() {
-  element = document.createElement('div')
-  document.body.appendChild(element)
-  element.style.color = 'red'
-  element.style.fontSize = '12px'
-  element.style.lineHeight = '1em'
-  element.style.margin = '2em auto'
-  element.style.padding = '0 10px'
-  element.style.height = '50vh'
-  element.style.width = '50vw'
-  element.style.boxShadow = '0 0 10px red'
-})
+before(addExternalStyle)
+beforeEach(createElement)
 
 describe('chai-style', () => {
   describe('module', () => {
@@ -193,3 +175,24 @@ describe('chai-style', () => {
     })
   })
 })
+
+function addExternalStyle() {
+  const style = document.createElement('style')
+  style.innerHTML = 'div {text-transform: uppercase}'
+  document
+    .querySelector('head')
+    .appendChild(style)
+}
+
+function createElement() {
+  element = document.createElement('div')
+  document.body.appendChild(element)
+  element.style.color = 'red'
+  element.style.fontSize = '12px'
+  element.style.lineHeight = '1em'
+  element.style.margin = '2em auto'
+  element.style.padding = '0 10px'
+  element.style.height = '50vh'
+  element.style.width = '50vw'
+  element.style.boxShadow = '0 0 10px red'
+}
