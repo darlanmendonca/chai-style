@@ -7,8 +7,7 @@ case $1 in
   safari) browser="Safari" ;;
   firefox) browser="Firefox" ;;
   nightmare) browser="Nightmare" ;;
-  all) browser="Chrome,Safari,Firefox,Nightmare" ;;
-  *) browser="Nightmare" ;;
+  *) browser="all" ;;
 esac
 
 if [[ $1 == browserstack:* ]]; then
