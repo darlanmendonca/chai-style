@@ -40,7 +40,7 @@ function chaiStyle(chai, utils) {
       const value = fakeStyle[property]
 
       const hasAutoValue = value.includes('auto')
-      const reg = new RegExp(value.replace(/auto/g, '(\\d+(.\\d+)?px|auto)'))
+      const reg = new RegExp(escapeRegExp(value).replace(/auto/g, '(\\d+(.\\d+)?px|auto)'))
 
       return hasAutoValue
         ? reg.test(computed)
@@ -49,3 +49,7 @@ function chaiStyle(chai, utils) {
   })
 }
 
+// https://github.com/benjamingr/RegExp.escape/blob/master/polyfill.js
+function escapeRegExp(value) {
+    return String(value).replace(/[\\^$*+?.()|[\]{}]/g, '\\$&')
+}
