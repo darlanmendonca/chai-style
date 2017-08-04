@@ -41,6 +41,10 @@ describe('chai-style', () => {
     it('should get property defined in external css', () => {
       expect(element).to.have.style('textTransform')
     })
+
+    it('should support asserting non-regex-safe values', () => {
+      expect(element).to.have.style('backgroundImage', 'url("data:image/gif;base64,ABC++DEF==")')
+    })
   })
 
   describe('values', () => {
@@ -195,4 +199,5 @@ function createElement() {
   element.style.height = '50vh'
   element.style.width = '50vw'
   element.style.boxShadow = '0 0 10px red'
+  element.style.backgroundImage = 'url("data:image/gif;base64,ABC++DEF==")'
 }
