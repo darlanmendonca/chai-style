@@ -178,6 +178,15 @@ describe('chai-style', () => {
       expect(element).to.have.style('width', `${window.innerWidth / 2}px`)
     })
   })
+
+  describe('cleanup', () => {
+    it('does not leave elements in DOM after running', () => {
+      const childCountPreMatcher = document.body.children.length
+      expect(element).to.have.style('color', 'red')
+      const childCountPostMatcher = document.body.children.length
+      expect(childCountPreMatcher).to.equal(childCountPostMatcher)
+    })
+  })
 })
 
 function addExternalStyle() {
