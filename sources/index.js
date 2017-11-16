@@ -42,9 +42,13 @@ function chaiStyle(chai, utils) {
       const hasAutoValue = value.includes('auto')
       const reg = new RegExp(escapeRegExp(value).replace(/auto/g, '(\\d+(.\\d+)?px|auto)'))
 
-      return hasAutoValue
+      const comparisonResult = hasAutoValue
         ? reg.test(computed)
         : computed === value
+
+      document.body.removeChild(iframe)
+
+      return comparisonResult
     }
   })
 }
